@@ -168,7 +168,6 @@ define(function(require) {
     food = [];
   }
 
-
   // Update game objects
   function update(modifier) {
     snake.since_last_update += modifier;
@@ -240,7 +239,6 @@ define(function(require) {
     // Allow next direction change.
     snake.dirchange = false;
   }
-
 
   // Draw everything
   function render() {
@@ -350,10 +348,10 @@ define(function(require) {
   });
 
   $(function() {
-      $('#loading').animate({opacity: 0}, {complete: function() {
-        $(this).remove();
-        $('#container').animate({opacity: 1});
-      }});
+    $('#loading').animate({opacity: 0}, {complete: function() {
+      $(this).remove();
+      $('#container').animate({opacity: 1});
+    }});
   });
 
 // End require.js
