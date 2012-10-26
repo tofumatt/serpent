@@ -1,6 +1,11 @@
 "use strict";
 
 define({
+  // No one likes magic constants; map directions to readable constants here.
+  UP: 1,
+  RIGHT: 2,
+  DOWN: 3,
+  LEFT: 4,
   clickBust: function(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -15,5 +20,8 @@ define({
     } else {
       return touch ? arguments[0] : arguments[1];
     }
+  },
+  oppositeDirection: function(direction) {
+    return direction + 2 > 4 ? direction - 2 : direction + 2;
   }
 });

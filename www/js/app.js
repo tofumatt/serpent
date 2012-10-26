@@ -45,10 +45,10 @@ define(function(require) {
 
   // Directions
   var dirs = {
-    38: 1, // up
-    39: 2, // right
-    40: 3, // down
-    37: 4 // left
+    38: utils.UP,
+    39: utils.RIGHT,
+    40: utils.DOWN,
+    37: utils.LEFT
   };
 
   /**
@@ -59,7 +59,7 @@ define(function(require) {
   function Snake() {
     this.speed = config.getSpeed(); // movement in blocks per second
     this.length = 8; // snake length
-    this.dir = level.dir || 2; // direction
+    this.dir = level.dir || utils.RIGHT; // direction
     this.path = [level.start || {x: game.width / 2, y: game.height / 2}]; // Track snake's movement
     this.lives = (snake === undefined || !snake) ? 3 : snake.lives; // 3 lives by default.
 
@@ -121,9 +121,7 @@ define(function(require) {
     e.preventDefault();
 
     // Avoid opposite directions.
-    // This is probably faster than (snake.dir + 2 > 4 ? snake.dir - 2 : snake.dir + 2)
-    var opposites = {1: 3, 2: 4, 3: 1, 4: 2};
-    if (dirs[e.keyCode] === opposites[snake.dir]) {
+    if (dirs[e.keyCode] === utils.oppositeDirection(snake.dir)) {
       return;
     }
 
@@ -142,20 +140,20 @@ define(function(require) {
     e.preventDefault();
 
     snake.dirchange = true;
-    if ([1, 3].indexOf(snake.dir) !== -1) { // up or down
+    if ([utils.UP, utils.DOWN].indexOf(snake.dir) !== -1) { // Snake is moving vertically.
       var relX = e.pageX - e.target.offsetLeft;
-      if (relX > canvas.offsetWidth / 2) { // right
-        snake.dir = 2;
-      } else { // left
-        snake.dir = 4;
+      if (relX > canvas.offsetWidth / 2) {
+        snake.dir = utils.RIGHT;
+      } else {
+        snake.dir = utils.LEFT;
       }
 
-    } else { // Left or right
+    } else { // Snake is moving horizontally.
       var relY = e.pageY - e.target.offsetTop;
-      if (relY > canvas.offsetHeight / 2) { // down
-        snake.dir = 3;
-      } else { // up
-        snake.dir = 1;
+      if (relY > canvas.offsetHeight / 2) {
+        snake.dir = utils.DOWN;
+      } else {
+        snake.dir = utils.UP;
       }
     }
   }
