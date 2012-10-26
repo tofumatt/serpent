@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html manifest="manifest.appcache">
+<html manifest="">
   <head>
     <meta charset="utf-8">
 
@@ -19,28 +19,31 @@
     <link rel="stylesheet" href="css/app.css">
   </head>
   <body>
+    <div id="loading">Loading...</div>
 
-    <section id="config">
-      <h1>serpent</h1>
-      <h2>choose speed</h2>
-      <div>
-        <a class="button changespeed" data-delta="-1">-</a>
-        <span id="speed"></span>
-        <a class="button changespeed" data-delta="1">+</a>
+    <div id="container">
+      <section id="config">
+        <h1>serpent</h1>
+        <h2>choose speed</h2>
+        <div>
+          <a class="button changespeed" data-delta="-1">-</a>
+          <span id="speed"></span>
+          <a class="button changespeed" data-delta="1">+</a>
+        </div>
+        <a class="button" id="start-game">Start</a>
+      </section>
+      <section id="game">
+        <div id="gamebox"></div>
+      </section>
+      <div id="commands">
+          <h2>Commands:</h2>
+          <ul>
+              <li><strong>&uarr; &rarr; &darr; &larr;</strong> &mdash; up, right, down, left</li>
+              <li><strong>P</strong> &mdash; Pause</li>
+          </ul>
       </div>
-      <a class="button" id="start-game">Start</a>
-    </section>
-    <section id="game">
-      <div id="gamebox"></div>
-    </section>
-    <div id="commands">
-        <h2>Commands:</h2>
-        <ul>
-            <li><strong>&uarr; &rarr; &darr; &larr;</strong> &mdash; up, right, down, left</li>
-            <li><strong>P</strong> &mdash; Pause</li>
-        </ul>
     </div>
 
-    <script type="text/javascript" data-main="js/init.js" src="js/lib/require.js"></script>
+    <script data-main="js/init.js" src="js/lib/require.js"></script>
   </body>
 </html>

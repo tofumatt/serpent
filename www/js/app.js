@@ -133,6 +133,7 @@ define(function(require) {
   }
 
   function moveSnakeOnTouch(e) {
+    console.log(e);
     // No other commands while paused or while direction change already in progress.
     if (game.paused || snake.dirchange) {
       return;
@@ -319,8 +320,7 @@ define(function(require) {
     $(window).keydown(moveSnakeOnKeyPress);
 
     // Handle click and touch events.
-    $(canvas).bind('touchStart', moveSnakeOnTouch);
-    $(canvas).click(moveSnakeOnTouch);
+    $(canvas).on('touchstart click', moveSnakeOnTouch);
   }
 
   // The main game loop
@@ -347,6 +347,13 @@ define(function(require) {
     reset();
     then = Date.now();
     main();
+  });
+
+  $(function() {
+      $('#loading').animate({opacity: 0}, {complete: function() {
+        $(this).remove();
+        $('#container').animate({opacity: 1});
+      }});
   });
 
 // End require.js
