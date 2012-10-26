@@ -4,9 +4,9 @@
 define(function(require) {
   // Libraries
   var $ = require('zepto');
-  var assets = require('./assets');
-  var utils = require('./utils');
-  var config = require('./config');
+  var assets = require('assets');
+  var utils = require('utils');
+  var config = require('config');
 
   var document = window.document;
 

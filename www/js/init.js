@@ -1,5 +1,10 @@
+"use strict";
+
 require.config({
-    baseUrl: 'js/lib'
+    baseUrl: 'js',
+    paths: {
+        'zepto': ['lib/zepto']
+    }
 });
 
-requirejs(['../app']);
+window.requirejs(['app']);
