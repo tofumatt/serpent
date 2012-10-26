@@ -29,7 +29,8 @@ define(function() {
     snake: {src: 'img/snake.png'}
   };
 
-  function loadLevel(img, level) {
+  function loadLevel(ctx, img, level) {
+    console.log(ctx);
     canvas.width = img.width;
     canvas.height = img.height;
     ctx.drawImage(img, 0, 0);
@@ -57,9 +58,9 @@ define(function() {
 
   for (var i in levels) {
     var img = new window.Image();
-    img.addEventListener('load', loadLevel(img, levels[i]));
-
     img.src = levels[i].src;
+
+    img.addEventListener('load', loadLevel(ctx, img, levels[i]));
   }
 
   // Load other images
